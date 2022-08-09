@@ -1,13 +1,29 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  Pressable,
+} from "react-native";
+import { theme } from "./colors";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <Text style={styles.buttonText}>To Do</Text>
-        <Text style={styles.buttonText}>Travel</Text>
+        <TouchableHighlight
+          onPress={() => console.log("눌렸다")}
+          underlayColor="#DDDDDD"
+        >
+          <Text style={styles.btnText}>Work</Text>
+        </TouchableHighlight>
+        <TouchableOpacity activeOpacity={0.3}>
+          <Text style={styles.btnText}>Travel</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -16,14 +32,17 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
-    paddingHorizontal: 20,
+    backgroundColor: theme.bg,
   },
   header: {
-    flexDirection: row,
+    flexDirection: "row",
     marginTop: 100,
+    paddingHorizontal: 40,
+    justifyContent: "space-between",
   },
-  buttonText: {
-    color: white,
+  btnText: {
+    color: theme.lightgrey,
+    fontSize: 40,
+    fontWeight: "900",
   },
 });
