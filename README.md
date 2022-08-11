@@ -15,7 +15,7 @@
 
 
 
-<video controls=false autoplay src="https://user-images.githubusercontent.com/96907807/184169653-ed04e9d3-fa47-4038-accc-e94363a00fc2.mov"/>
+<video src="https://user-images.githubusercontent.com/96907807/184169653-ed04e9d3-fa47-4038-accc-e94363a00fc2.mov"/>
 
 
 
