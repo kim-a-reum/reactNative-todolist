@@ -14,11 +14,11 @@
     * Alert의 text와 버튼에 style적용, onPress에 callback함수 적용하기
     
 <Br/>
-* 추가적으로 진행할 것 들 <br/>
-  * Work / Travel 상태값 저장해서 리로딩 되더라도 종료한곳에서 다시 켜지도록 구현
-  * todoList별 체크박스 생성, 완료처리 가능하도록
+* 추가적으로 진행할 것들 <br/>
+  * Work / Travel 상태값 저장해서 리로딩 되더라도 종료한곳에서 다시 켜지도록 구현<br/>
+  * todoList별 체크박스 생성, 완료처리 가능하도록<br/>
   * todoList 수정하기 기능 구현 (component로 분리하여 state값 주기) 
-
+<br/>
  
 
 
