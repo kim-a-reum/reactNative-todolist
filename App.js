@@ -11,6 +11,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  Platform,
 } from "react-native";
 import { theme } from "./colors";
 import { Fontisto } from "@expo/vector-icons";
@@ -38,7 +39,9 @@ export default function App() {
   };
   const loadToDo = async () => {
     const s = await AsyncStorage.getItem(STORAGE_KEY);
-    setToDos(JSON.parse(s));
+    if (s) {
+      setToDos(JSON.parse(s));
+    }
   };
 
   const onChangeText = (data) => {
@@ -57,18 +60,28 @@ export default function App() {
   };
 
   const onClickDelete = async (key) => {
-    Alert.alert("Delete To Do", "Are you sure?", [
-      { text: "Cancel" },
-      {
-        text: "I'm Sure",
-        onPress: () => {
-          const newTodo = { ...toDo };
-          delete newTodo[key];
-          setToDos(newTodo);
-          saveToDo(newTodo);
+    if (Platform.OS === "web") {
+      const ok = confirm("Do you want to delete this To Do?");
+      if (ok) {
+        const newTodo = { ...toDo };
+        delete newTodo[key];
+        setToDos(newTodo);
+        saveToDo(newTodo);
+      }
+    } else {
+      Alert.alert("Delete To Do", "Are you sure?", [
+        { text: "Cancel" },
+        {
+          text: "I'm Sure",
+          onPress: () => {
+            const newTodo = { ...toDo };
+            delete newTodo[key];
+            setToDos(newTodo);
+            saveToDo(newTodo);
+          },
         },
-      },
-    ]);
+      ]);
+    }
   };
 
   return (
@@ -78,7 +91,9 @@ export default function App() {
         <TouchableOpacity activeOpacity={0.3} onPress={work}>
           <Text
             style={{
-              ...styles.btnText,
+              color: theme.lightgrey,
+              fontSize: 40,
+              fontWeight: "900",
               color: working ? "white" : theme.lightgrey,
             }}
           >
@@ -88,7 +103,9 @@ export default function App() {
         <TouchableOpacity activeOpacity={0.3} onPress={travel}>
           <Text
             style={{
-              ...styles.btnText,
+              color: theme.lightgrey,
+              fontSize: 40,
+              fontWeight: "900",
               color: working ? theme.lightgrey : "white",
             }}
           >
@@ -139,11 +156,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     justifyContent: "space-between",
   },
-  btnText: {
-    color: theme.lightgrey,
-    fontSize: 40,
-    fontWeight: "900",
-  },
   TextInput: {
     backgroundColor: "white",
     paddingVertical: 10,
@@ -169,4 +181,3 @@ const styles = StyleSheet.create({
     // /
   },
 });
-$;
